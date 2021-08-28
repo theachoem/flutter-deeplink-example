@@ -1,5 +1,6 @@
 import 'package:deeplink/app.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uni_links/uni_links.dart';
 
 void main() async {
@@ -9,7 +10,9 @@ void main() async {
     StreamBuilder<String?>(
       stream: linkStream,
       builder: (context, snapshot) {
-        return App(url: snapshot.data ?? url);
+        return ProviderScope(
+          child: App(url: snapshot.data ?? url),
+        );
       },
     ),
   );
